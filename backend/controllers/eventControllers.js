@@ -21,7 +21,33 @@ const createEvent= async (req,res) => {
     }
 };
 
+// GET /events/:id - Get a single event
+const getEvent = async ( req,res) => {
+  const {id} = req.params;
+  try {
+    const event = await Event.findById(id);
+    if (!event) return res.status(404).json({ message: "Event not found" });
+    res.status(200).json(event);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+// DELETE /events/:id - Delete an event
+const deleteEvent = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedEvent = await Event.findByIdAndDelete(id);
+    if (!deletedEvent) return res.status(404).json({ message: "Event not found" });
+    res.status(200).json({ message: "Event deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
     getAllEvents,
-    createEvent
+    createEvent, 
+    getEvent,
+    deleteEvent
 };

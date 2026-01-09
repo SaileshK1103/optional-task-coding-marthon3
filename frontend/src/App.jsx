@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // pages & components
-import Home from "./pages/HomePage";
-import AddEventPage from "./pages/AddEventPage";
 import Navbar from "./components/Navbar";
-import NotFoundPage from "./pages/NotFoundPage"
+import AddEventPage from "./pages/AddEventPage";
+import EventDetailsPage from "./pages/EventDetailsPage";
+import Home from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/add-event" element={<AddEventPage />} />
+              <Route path="/events/:id" element={<EventDetailsPage />} />
               <Route path='*' element={<NotFoundPage />} />
             </Routes>
           </div>
