@@ -34,94 +34,37 @@
   padding: 20px;
 }
 
-/* job previews / list */
+/* event preview / list*/
 
-.job-list {
-  display: flex;
-  flex-direction: column;
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
-  background-color: #f9f9f9;
 }
 
-.job-preview {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.job-preview:hover {
-  box-shadow: 1px 3px 5px rgba(41, 20, 156, 0.1);
-}
-
-.job-preview h2 {
-  margin: 0 0 10px;
-  font-size: 1.5em;
-  color: #f1356d;
-}
-
-.job-preview p {
-  margin: 5px 0;
-  color: #666;
-}
-
-.job-preview p span {
-  font-weight: bold;
-}
-
-.job-preview a{
-  text-decoration: none;
-}
-
-/* job details page */
-.job-details h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 10px;
-}
-.job-details div {
-  margin: 20px 0;
-}
-.job-details button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
+.event-card {
+  background: #fff;
   border-radius: 8px;
-  cursor: pointer;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* create new job form */
-.create {
-  max-width: 400px;
-  margin: 0 auto;
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.view-details-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #e91e63; /* Matching your "Event Search" color */
+  color: white;
   text-align: center;
-}
-.create label {
-  text-align: left;
-  display: block;
-}
-.create h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 30px;
-}
-.create input, .create textarea, .create select {
-  width: 100%;
-  padding: 6px 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  display: block;
-}
-.create button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
 }
