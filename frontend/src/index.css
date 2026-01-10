@@ -86,16 +86,76 @@
   border-top: 1px solid #eee;
 }
 
-.delete-btn {
+.edit-btn, .delete-btn {
   margin-top: 30px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
   padding: 10px 20px;
   border-radius: 5px;
+  border: none;
   cursor: pointer;
+  font-family: "Quicksand";
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 
-.delete-btn:hover {
-  background-color: #c82333;
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.8;
+}
+/* Color Overrides */
+.edit-btn {
+  background-color: #f1356d; /* Your theme pink */
+  color: white;
+  margin-right: 12px;
+}
+
+.delete-btn {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+
+/* Edit Event Page*/
+
+.edit-event-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.edit-event-container h2 {
+  margin-bottom: 20px;
+  color: #f1356d;
+}
+
+.section-title {
+  margin: 25px 0 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.form-group input:focus {
+  border-color: #f1356d;
+  outline: none;
 }

@@ -1,7 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddEventPage = () => {
+const EditEventPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  // 1. Create state for every field in your schema
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -9,45 +13,59 @@ const AddEventPage = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const res = await fetch(`/api/events/${id}`);
+      const data = await res.json();
+      if (res.ok) {
+        // 2. Pre-fill the form with existing data
+        setTitle(data.title);
+        // Format date to YYYY-MM-DD for the HTML input
+        setDate(new Date(data.date).toISOString().split("T")[0]);
+        setLocation(data.location);
+        setName(data.organizer.name);
+        setEmail(data.organizer.contactEmail);
+        setPhone(data.organizer.contactPhone);
+      }
+    };
+    fetchEvent();
+  }, [id]);
 
-  const submitForm = async (e) => {
-    e.preventDefault();
+  const handleUpdate = async (e) => {
+    e.preventDefault(); // Prevents page reload
 
-    const newEvent = {
+    const updatedEvent = {
       title,
       date,
       location,
       organizer: { name, contactEmail: email, contactPhone: phone },
     };
 
-    const res = await fetch("/api/events", {
-      method: "POST",
+    const res = await fetch(`/api/events/${id}`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newEvent),
+      body: JSON.stringify(updatedEvent),
     });
 
     if (res.ok) {
-      navigate("/"); // Redirect to Home after success
+      navigate(`/events/${id}`); // Go back to the details page to see changes
     } else {
-      alert("Failed to add event");
+      alert("Failed to update event");
     }
   };
 
   return (
     <div className="edit-event-container">
-      {" "}
-      {/* Reuse this container for consistent width */}
-      <form onSubmit={submitForm} className="edit-form">
-        <h2>Add a New Event</h2>
+      <form onSubmit={handleUpdate} className="edit-form">
+        <h2>Edit Event: {title}</h2>
 
         <div className="form-group">
           <label>Event Title:</label>
           <input
             type="text"
-            required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
 
@@ -55,9 +73,9 @@ const AddEventPage = () => {
           <label>Date:</label>
           <input
             type="date"
-            required
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            required
           />
         </div>
 
@@ -65,9 +83,9 @@ const AddEventPage = () => {
           <label>Location:</label>
           <input
             type="text"
-            required
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            required
           />
         </div>
 
@@ -77,9 +95,9 @@ const AddEventPage = () => {
           <label>Name:</label>
           <input
             type="text"
-            required
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </div>
 
@@ -87,9 +105,9 @@ const AddEventPage = () => {
           <label>Email:</label>
           <input
             type="email"
-            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
 
@@ -97,15 +115,22 @@ const AddEventPage = () => {
           <label>Phone:</label>
           <input
             type="text"
-            required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            required
           />
         </div>
 
         <div className="actions">
           <button type="submit" className="edit-btn">
-            Add Event
+            Update Event
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="delete-btn"
+          >
+            Cancel
           </button>
         </div>
       </form>
@@ -113,4 +138,4 @@ const AddEventPage = () => {
   );
 };
 
-export default AddEventPage;
+export default EditEventPage;

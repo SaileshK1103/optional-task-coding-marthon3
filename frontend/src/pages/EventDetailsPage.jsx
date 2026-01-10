@@ -22,6 +22,10 @@ const EventDetailsPage = () => {
     fetchEvent();
   }, [id]);
 
+  const onEditClick = () => {
+    navigate(`/edit-event/${event.id}`);
+  };
+
   const onDeleteClick = async () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this event?"
@@ -68,8 +72,11 @@ const EventDetailsPage = () => {
       </div>
 
       <div className="actions">
+        <button onClick={onEditClick} className="edit-btn">
+          Edit Event
+        </button>
         <button onClick={onDeleteClick} className="delete-btn">
-          Delete Event
+          Delete
         </button>
       </div>
     </div>
