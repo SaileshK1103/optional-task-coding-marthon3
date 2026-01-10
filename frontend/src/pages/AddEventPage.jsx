@@ -28,7 +28,7 @@ const AddEventPage = () => {
     });
 
     if (res.ok) {
-      navigate("/"); // Redirect to Home after success
+      navigate("/");
     } else {
       alert("Failed to add event");
     }
@@ -37,7 +37,6 @@ const AddEventPage = () => {
   return (
     <div className="edit-event-container">
       {" "}
-      {/* Reuse this container for consistent width */}
       <form onSubmit={submitForm} className="edit-form">
         <h2>Add a New Event</h2>
 

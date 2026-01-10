@@ -37,7 +37,7 @@ const EventDetailsPage = () => {
     });
 
     if (res.ok) {
-      navigate("/"); // Redirect home after deletion
+      navigate("/");
     } else {
       alert("Failed to delete event");
     }

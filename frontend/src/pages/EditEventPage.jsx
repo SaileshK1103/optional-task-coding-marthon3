@@ -5,7 +5,6 @@ const EditEventPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // 1. Create state for every field in your schema
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -18,9 +17,8 @@ const EditEventPage = () => {
       const res = await fetch(`/api/events/${id}`);
       const data = await res.json();
       if (res.ok) {
-        // 2. Pre-fill the form with existing data
+        
         setTitle(data.title);
-        // Format date to YYYY-MM-DD for the HTML input
         setDate(new Date(data.date).toISOString().split("T")[0]);
         setLocation(data.location);
         setName(data.organizer.name);
@@ -32,7 +30,7 @@ const EditEventPage = () => {
   }, [id]);
 
   const handleUpdate = async (e) => {
-    e.preventDefault(); // Prevents page reload
+    e.preventDefault();
 
     const updatedEvent = {
       title,
@@ -48,7 +46,7 @@ const EditEventPage = () => {
     });
 
     if (res.ok) {
-      navigate(`/events/${id}`); // Go back to the details page to see changes
+      navigate(`/events/${id}`);
     } else {
       alert("Failed to update event");
     }
