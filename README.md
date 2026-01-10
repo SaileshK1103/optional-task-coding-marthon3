@@ -18,3 +18,6 @@
 
 4. **Access the App**  
    Open your browser and visit: [http://localhost:3000](http://localhost:3000)
+
+5. **Deployed API (Render)**
+   The backend is live at: [https://event-search-api.onrender.com/api/events](https://event-search-api.onrender.com/api/events)
