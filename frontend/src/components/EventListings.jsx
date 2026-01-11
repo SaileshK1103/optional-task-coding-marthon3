@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EventListing from "./EventListing";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const EventListings = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +9,7 @@ const EventListings = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("/api/events");
+        const res = await fetch(`${baseUrl}/api/events`);
         const data = await res.json();
         setEvents(data);
       } catch (error) {

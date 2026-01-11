@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const EventDetailsPage = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -10,7 +11,7 @@ const EventDetailsPage = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`/api/events/${id}`);
+        const res = await fetch(`${baseUrl}/api/events/${id}`);
         const data = await res.json();
         setEvent(data);
       } catch (error) {
@@ -23,7 +24,7 @@ const EventDetailsPage = () => {
   }, [id]);
 
   const onEditClick = () => {
-    navigate(`/edit-event/${event.id}`);
+    navigate(`/edit-event/${id}`);
   };
 
   const onDeleteClick = async () => {
@@ -32,7 +33,7 @@ const EventDetailsPage = () => {
     );
     if (!confirmDelete) return;
 
-    const res = await fetch(`/api/events/${id}`, {
+    const res = await fetch(`${baseUrl}/api/events/${id}`, {
       method: "DELETE",
     });
 

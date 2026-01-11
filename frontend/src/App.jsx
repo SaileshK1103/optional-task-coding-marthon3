@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // pages & components
 import Navbar from "./components/Navbar";
 import AddEventPage from "./pages/AddEventPage";
-import EventDetailsPage from "./pages/EventDetailsPage";
 import EditEventPage from "./pages/EditEventPage";
+import EventDetailsPage from "./pages/EventDetailsPage";
 import Home from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -12,7 +12,7 @@ const App = () => {
 
     return (
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter basename="/optional-task-coding-marthon3">
           <Navbar />
           <div className="content">
             <Routes>

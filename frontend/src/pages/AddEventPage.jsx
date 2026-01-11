@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const AddEventPage = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -21,7 +22,7 @@ const AddEventPage = () => {
       organizer: { name, contactEmail: email, contactPhone: phone },
     };
 
-    const res = await fetch("/api/events", {
+    const res = await fetch(`${baseUrl}/api/events`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newEvent),

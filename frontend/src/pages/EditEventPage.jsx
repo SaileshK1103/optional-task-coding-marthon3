@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const EditEventPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const EditEventPage = () => {
 
   useEffect(() => {
     const fetchEvent = async () => {
-      const res = await fetch(`/api/events/${id}`);
+      const res = await fetch(`${baseUrl}/api/events/${id}`);
       const data = await res.json();
       if (res.ok) {
         
@@ -39,7 +40,7 @@ const EditEventPage = () => {
       organizer: { name, contactEmail: email, contactPhone: phone },
     };
 
-    const res = await fetch(`/api/events/${id}`, {
+    const res = await fetch(`${baseUrl}/api/events/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedEvent),
