@@ -7,27 +7,62 @@
   color: #333;
 }
 .navbar {
-  padding: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  max-width: 600px;
-  margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  padding: 1rem 5%;
+  background: #ffffff;
+  border-bottom: 2px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 .navbar h1 {
-  color: #f1356d;
+  color: #e91e63; 
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0;
 }
-.navbar .links {
-  margin-left: auto;
+.links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
-.navbar a {
-  margin-left: 16px;
+.links a {
   text-decoration: none;
-  padding: 6px;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
 }
-.navbar a:hover {
-  color: #f1356d;
+a:hover {
+  color: #e91e63;
 }
+
+/* User Greeting Styling */
+.user-greeting {
+  font-weight: 600;
+  color: #555;
+  border-left: 2px solid #ddd;
+  padding-left: 15px;
+}
+
+/* Matching the Logout button to your theme */
+.logout-btn {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #ff4d4d;
+  color: white;
+  border-color: #ff4d4d;
+}
+
 .content {
   max-width: 600px;
   margin: 40px auto;
@@ -158,4 +193,74 @@
 .form-group input:focus {
   border-color: #f1356d;
   outline: none;
+}
+
+/* Container for the whole AuthPage */
+.auth-container {
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Form layout */
+.auth-sub-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-sub-form h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Input styling */
+.auth-sub-form input, 
+.auth-sub-form select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.auth-sub-form input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* Primary Button Styling */
+.auth-sub-form button {
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-sub-form button:hover {
+  background-color: #45a049;
+}
+
+/* Toggle Link Styling */
+.auth-container p {
+  margin-top: 20px;
+  color: #666;
+}
+
+.auth-container .toggle-btn {
+  background: none;
+  border: none;
+  color: #2196F3;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  padding-left: 5px;
 }

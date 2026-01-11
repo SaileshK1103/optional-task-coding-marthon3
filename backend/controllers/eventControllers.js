@@ -1,5 +1,4 @@
 const Event = require("../models/eventModel");
-const mongoose = require("mongoose");
 
 // GET / jobs;
 const getAllEvents = async (req, res) => {

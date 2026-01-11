@@ -7,12 +7,13 @@ const {
   updateEvent
 } = require("../controllers/eventControllers");
 
+const { protect } = require("../middleware/authMiddleware");
 const router = express.Router();
 
 router.get("/", getAllEvents);
-router.post("/", createEvent);
-router.get('/:id', getEvent);
-router.delete('/:id', deleteEvent);
-router.put('/:id', updateEvent);
+router.post("/", protect, createEvent);
+router.get('/:id',protect, getEvent);
+router.delete('/:id', protect,  deleteEvent);
+router.put('/:id', protect, updateEvent);
 
 module.exports = router;
