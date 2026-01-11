@@ -21,3 +21,5 @@
 
 5. **Deployed API (Render)**
    The backend is live at: [https://event-search-api.onrender.com/api/events](https://event-search-api.onrender.com/api/events)
+
+6. **Deployed Frontend (GitHub Pages)** The application is live at: [https://saileshk1103.github.io/optional-task-coding-marthon3](https://saileshk1103.github.io/optional-task-coding-marthon3)
