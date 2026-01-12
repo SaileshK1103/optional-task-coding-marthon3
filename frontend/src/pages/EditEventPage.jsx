@@ -50,7 +50,8 @@ const EditEventPage = () => {
 
     const res = await fetch(`${baseUrl}/api/events/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}` },
       body: JSON.stringify(updatedEvent),
     });
 
