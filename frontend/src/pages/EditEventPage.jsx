@@ -15,7 +15,12 @@ const EditEventPage = () => {
 
   useEffect(() => {
     const fetchEvent = async () => {
-      const res = await fetch(`${baseUrl}/api/events/${id}`);
+      const user = JSON.parse(localStorage.getItem("user"));
+      const token = user?.token;
+      const res = await fetch(`${baseUrl}/api/events/${id}`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      }
+      );
       const data = await res.json();
       if (res.ok) {
         
@@ -32,6 +37,9 @@ const EditEventPage = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user?.token;
 
     const updatedEvent = {
       title,

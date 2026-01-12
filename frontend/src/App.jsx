@@ -13,13 +13,16 @@ import NotFoundPage from "./pages/NotFoundPage";
 const App = () => {
 
   const [user, setUser] = useState(null);
+  const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
     if (savedUser) {
       setUser(savedUser);
     }
+    setIsChecking(false);
   }, []);
+  if (isChecking) return null;
 
   const handleLogout = () => {
     localStorage.removeItem("user");

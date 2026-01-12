@@ -11,7 +11,14 @@ const EventDetailsPage = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/events/${id}`);
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = user?.token;
+        const res = await fetch(`${baseUrl}/api/events/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!res.ok) throw new Error("Failed to fetch event");
         const data = await res.json();
         setEvent(data);
       } catch (error) {
@@ -33,8 +40,14 @@ const EventDetailsPage = () => {
     );
     if (!confirmDelete) return;
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user?.token;
+
     const res = await fetch(`${baseUrl}/api/events/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`, // Mandatory for protected delete route
+      },
     });
 
     if (res.ok) {
@@ -62,13 +75,13 @@ const EventDetailsPage = () => {
       <div className="organizer-section">
         <h3>Organizer Information</h3>
         <p>
-          <strong>Name:</strong> {event.organizer.name}
+          <strong>Name:</strong> {event.organizer?.name}
         </p>
         <p>
-          <strong>Email:</strong> {event.organizer.contactEmail}
+          <strong>Email:</strong> {event.organizer?.contactEmail}
         </p>
         <p>
-          <strong>Phone:</strong> {event.organizer.contactPhone}
+          <strong>Phone:</strong> {event.organizer?.contactPhone}
         </p>
       </div>
 
