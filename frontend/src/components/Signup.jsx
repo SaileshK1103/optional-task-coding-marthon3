@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const Signup = ({ setUser }) => {
   const [formData, setFormData] = useState({
     name: "", email: "", password: "",
@@ -16,7 +17,7 @@ const Signup = ({ setUser }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4000/api/users/signup", {
+      const response = await fetch(`${baseUrl}/api/users/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
