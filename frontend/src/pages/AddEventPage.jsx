@@ -15,6 +15,13 @@ const AddEventPage = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user?.token;
+
+    if (!token) {
+      alert("You must be logged in to add an event.");
+      return;
+    }
     const newEvent = {
       title,
       date,
@@ -24,7 +31,9 @@ const AddEventPage = () => {
 
     const res = await fetch(`${baseUrl}/api/events`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+     },
       body: JSON.stringify(newEvent),
     });
 
