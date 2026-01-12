@@ -1,24 +1,29 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const app = express();
 
 const eventRouter = require("./routes/eventRouter");
 const userRouter = require("./routes/userRouter");
 
-const { unknownEndpoint,errorHandler } = require("./middleware/customMiddleware");
+const {
+  unknownEndpoint,
+  errorHandler,
+} = require("./middleware/customMiddleware");
 const connectDB = require("./config/db");
-const cors = require(({
-    origin: "https://saileshk1103.github.io",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-  }));
+const cors = require("cors");
 
 // Middlewares
-app.use(cors())
+app.use(
+  cors({
+    origin: "https://saileshk1103.github.io",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 connectDB();
- 
+
 app.use("/api/events", eventRouter);
 app.use("/api/users", userRouter);
 
@@ -29,4 +34,4 @@ module.exports = app;
 
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on port ${process.env.PORT}`)
-// })  
+// })
