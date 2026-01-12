@@ -7,7 +7,11 @@ const userRouter = require("./routes/userRouter");
 
 const { unknownEndpoint,errorHandler } = require("./middleware/customMiddleware");
 const connectDB = require("./config/db");
-const cors = require("cors");
+const cors = require(({
+    origin: "https://saileshk1103.github.io",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  }));
 
 // Middlewares
 app.use(cors())
